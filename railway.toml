@@ -1,0 +1,17 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+restartPolicyType = "never"
+
+[env]
+NODE_ENV = "production"
+PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = "true"
+PUPPETEER_EXECUTABLE_PATH = "/usr/bin/google-chrome-stable"
+
+[build.args]
+NODE_VERSION = "20"
+
+[build.nixpacks]
+cmd = "npm run build && npm prune --production"
+
