@@ -2,7 +2,11 @@
 builder = "nixpacks"
 
 [deploy]
-restartPolicyType = "never"
+# Keep the service alive — it's a long-running HTTP server, not a
+# one-shot scraping job like the original template assumed.
+restartPolicyType = "on_failure"
+healthcheckPath = "/health"
+healthcheckTimeout = 30
 
 [env]
 NODE_ENV = "production"
